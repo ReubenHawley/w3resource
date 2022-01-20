@@ -1,6 +1,7 @@
 package basicPart1;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 
 public class JavaBasics1 {
     public static void printExerciseNum(int num) {
@@ -36,30 +37,47 @@ public class JavaBasics1 {
         String binary = Integer.toString(number);
         String rev = new StringBuffer(binary).reverse().toString();
         int decimal = 0;
-        for (int i = rev.length()-1; i >= 0; i--) {
-            if (rev.charAt(i)=='1') {
-                decimal+=Math.pow(2,i);
+        for (int i = rev.length() - 1; i >= 0; i--) {
+            if (rev.charAt(i) == '1') {
+                decimal += Math.pow(2, i);
             }
         }
         return decimal;
     }
 
     private static String convertDecimalToHexa(int num) {
-        String[] letter = {"A","B","C","D","E","F"};
-        if (num<10)
+        String[] letter = {"A", "B", "C", "D", "E", "F"};
+        if (num < 10)
             return Integer.toString(num);
-        else{
-            num-=10;
+        else {
+            num -= 10;
             return letter[num];
         }
     }
-    public static void splitString(){
-        String binary = "10000";
+
+    public static String[] splitString(String binary) {
         int count = binary.length();
-        String[] binaries = new String[(count/4)+1];
-        binaries[0] = binary.substring(count-4,count);
-        binary = binary.substring(0, binary.length()-4);
-        System.out.println("Extracted:"+binaries[0]+" remaining string to be parsed "+binary);
+        String[] binaries = new String[(count / 4) + 1];
+        int loopCounter = 0;
+        while (count >= 4) {
+            count = binary.length();
+            if (count >= 4) {
+                // create a substring of length 4 and assign to array
+                binaries[loopCounter] = binary.substring(count - 4, count);
+                //subtract substring and reassign to itself
+                binary = binary.substring(0, count - 4);
+            } else {
+                // if the string left over is smaller than 4, fill with zero's.
+                for (int i = 0; i < count - 2; i++) {
+                    binary = "0" + binary;
+                }
+                binaries[loopCounter] = binary;
+                binary = binary.substring(0, count);
+            }
+
+            loopCounter++;
+        }
+        return binaries;
     }
 
     public static void exercise1(String name) {
@@ -188,27 +206,30 @@ public class JavaBasics1 {
                 " | '-' |                                                 \n" +
                 " +-----+");
     }
+
     public static void exercise17(int one, int two) {
-        int binarySum = convertBinaryToDecimal(one)+convertBinaryToDecimal(two);
+        int binarySum = convertBinaryToDecimal(one) + convertBinaryToDecimal(two);
         int sum = convertDecimalToBinary(binarySum);
-        System.out.println("Binary number is: "+sum);
-    }
-    public static void exercise18(int one, int two){
-        int binarySum = convertBinaryToDecimal(one)*convertBinaryToDecimal(two);
-        int sum = convertDecimalToBinary(binarySum);
-        System.out.println("Product of two binary numbers: "+sum);
-    }
-    public static void exercise19(int num){
-        System.out.println("Binary  Number: "+convertDecimalToBinary(num));
+        System.out.println("Binary number is: " + sum);
     }
 
-    public static void exercise20(int num){
+    public static void exercise18(int one, int two) {
+        int binarySum = convertBinaryToDecimal(one) * convertBinaryToDecimal(two);
+        int sum = convertDecimalToBinary(binarySum);
+        System.out.println("Product of two binary numbers: " + sum);
+    }
+
+    public static void exercise19(int num) {
+        System.out.println("Binary  Number: " + convertDecimalToBinary(num));
+    }
+
+    public static void exercise20(int num) {
 
         String hexa = convertDecimalToHexa(num);
-        System.out.println("Hexadecimal number is : "+hexa);
+        System.out.println("Hexadecimal number is : " + hexa);
     }
 
-    public static void exercise22(int num){
-        System.out.println("Decimal Number: "+convertBinaryToDecimal(num));
+    public static void exercise22(int num) {
+        System.out.println("Decimal Number: " + convertBinaryToDecimal(num));
     }
 }

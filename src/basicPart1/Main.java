@@ -1,6 +1,7 @@
 package basicPart1;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -65,7 +66,9 @@ public class Main {
         JavaBasics1.exercise20(8);
 
         System.out.println("testing split string for hexa function");
-        JavaBasics1.splitString();
+        String binary = "10101111000";
+        String[] answer = JavaBasics1.splitString(binary);
+        System.out.println(Arrays.toString(answer));
 
 
     }
