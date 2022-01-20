@@ -1,6 +1,5 @@
 package basicPart1;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class Main {

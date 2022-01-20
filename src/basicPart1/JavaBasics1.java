@@ -1,7 +1,6 @@
 package basicPart1;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 
 public class JavaBasics1 {
     public static void printExerciseNum(int num) {
@@ -19,17 +18,17 @@ public class JavaBasics1 {
     }
 
     public static int convertDecimalToBinary(int number) {
-        String binary = "";
+        StringBuilder binary = new StringBuilder();
         while (number >= 1) {
             if (number % 2 == 0) {
                 number = number / 2;
-                binary += "0";
+                binary.append("0");
             } else {
-                binary += "1";
+                binary.append("1");
                 number = number / 2;
             }
         }
-        String rev = new StringBuffer(binary).reverse().toString();
+        String rev = new StringBuffer(binary.toString()).reverse().toString();
         return Integer.parseInt(rev);
     }
 
@@ -131,10 +130,11 @@ public class JavaBasics1 {
     }
 
     public static void exercise8() {
-        System.out.println("   J    a   v     v  a                                                  \n" +
-                "   J   a a   v   v  a a                                                 \n" +
-                "J  J  aaaaa   V V  aaaaa                                                \n" +
-                " JJ  a     a   V  a     a");
+        System.out.println("""
+                   J    a   v     v  a                                                 \s
+                   J   a a   v   v  a a                                                \s
+                J  J  aaaaa   V V  aaaaa                                               \s
+                 JJ  a     a   V  a     a""");
     }
 
     public static void exercise9() {
@@ -172,19 +172,17 @@ public class JavaBasics1 {
         String even = "* * * * * * ";
         String odd = " * * * * *  ";
         String lineShort = "==================================";
-        String flag = "";
+        StringBuilder flag = new StringBuilder();
         for (int i = 0; i < 15; i++) {
             if (i < 9) {
                 if (i % 2 == 0) {
-                    flag = flag + even + lineShort + "\n";
+                    flag.append(even).append(lineShort).append("\n");
                 } else {
-                    flag = flag + odd + lineShort + "\n";
+                    flag.append(odd).append(lineShort).append("\n");
                 }
             } else {
-                for (int j = 0; j < even.length(); j++) {
-                    flag = flag + "=";
-                }
-                flag = flag + lineShort + "\n";
+                flag.append("=".repeat(even.length()));
+                flag.append(lineShort).append("\n");
             }
         }
         System.out.println(flag);
@@ -200,11 +198,12 @@ public class JavaBasics1 {
     }
 
     public static void exercise16() {
-        System.out.println(" +\"\"\"\"\"+                                                 \n" +
-                "[| o o |]                                                \n" +
-                " |  ^  |                                                 \n" +
-                " | '-' |                                                 \n" +
-                " +-----+");
+        System.out.println("""
+                 +""\"""+                                                \s
+                [| o o |]                                               \s
+                 |  ^  |                                                \s
+                 | '-' |                                                \s
+                 +-----+""");
     }
 
     public static void exercise17(int one, int two) {
