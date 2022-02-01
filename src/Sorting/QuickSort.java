@@ -3,9 +3,9 @@ package Sorting;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
-import java.util.Arrays;
 
-public class Sorting {
+
+public class QuickSort {
 
     /**
      * Perform a Quick sort algorithm on an Array
@@ -17,6 +17,12 @@ public class Sorting {
         quicksort(numList, 0, numList.length - 1);
     }
 
+    /**
+     * a quicksort algorithm using partitioning
+     * @param A integer array
+     * @param low the low value used for comparison
+     * @param high the high value used for comparison
+     */
     private void quicksort(int[] A, int low, int high) {
         if (low < high + 1) {
             int p = partition(A, low, high);
